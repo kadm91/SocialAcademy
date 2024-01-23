@@ -10,17 +10,41 @@ import SwiftUI
 struct PostsList: View {
     
     private var posts = [Post.testPost]
+    @State private var searchText = ""
     
     var body: some View {
     
         NavigationStack {
             List(posts) { post in
-                Text(post.content)
+                if searchText.isEmpty || post.contains(searchText) {
+                    PostRow(post: post)
+                }
             }
             .navigationTitle("Posts")
+            .overlay { noResultView }
+            .searchable(text: $searchText)
+          
+                
+            
+            
         }
     }
 }
+
+//MARK: - PostsList extension
+
+extension PostsList {
+    
+    var noResultView: some View {
+        ForEach(posts) { post in
+            if !searchText.isEmpty && !post.contains(searchText) {
+                ContentUnavailableView.search(text: searchText)
+            }
+        }
+    }
+}
+
+//MARK: - Preview
 
 #Preview {
     PostsList()

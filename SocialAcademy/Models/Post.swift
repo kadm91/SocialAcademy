@@ -13,6 +13,16 @@ struct Post: Identifiable {
     var content: String
     var authorName: String
     var timestamp = Date()
+    
+    
+    func contains(_ string: String) -> Bool {
+        let properties = [title, content, authorName].map {$0.lowercased()}
+        let query = string.lowercased()
+        let matches = properties.filter {$0.contains(query)}
+        return !matches.isEmpty
+    }
+    
+    
 }
 
 extension Post {
