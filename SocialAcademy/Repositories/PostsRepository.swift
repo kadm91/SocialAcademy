@@ -9,21 +9,26 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct PostsRepository {
+protocol PostsRepositoryProtocol {
+    func fetchPosts () async throws -> [Post]
+    func create (_ post: Post) async throws
+}
+
+struct PostsRepository: PostsRepositoryProtocol {
     
     
-    static let postsReference = Firestore.firestore().collection("posts")
+     let postsReference = Firestore.firestore().collection("posts")
     
     //createe
     
-    static func create(_ post: Post) async throws {
+     func create(_ post: Post) async throws {
         let document = postsReference.document(post.id.uuidString)
         try await document.setData(from: post)
     }
     
     //Fetch
     
-    static func fetchPosts() async throws -> [Post] {
+     func fetchPosts() async throws -> [Post] {
         let snapshot = try await postsReference
             .order(by: "timestamp", descending: true)
             .getDocuments()
