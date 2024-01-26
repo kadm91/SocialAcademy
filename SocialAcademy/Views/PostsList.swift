@@ -16,9 +16,22 @@ struct PostsList: View {
     var body: some View {
     
         NavigationStack {
-            List(vm.posts) { post in
-                if searchText.isEmpty || post.contains(searchText) {
-                    PostRow(post: post)
+            
+            Group {
+                switch vm.posts {
+                case .loading:
+                    ProgressView()
+                case .error(_):
+                    Text("Cannot Load Posts")
+                case .empty:
+                    Text("No Posts")
+                case let .loaded(posts):
+                    List(posts) { post in
+                        if searchText.isEmpty || post.contains(searchText) {
+                            PostRow(post: post)
+                        }
+                    }
+                    .searchable(text: $searchText)
                 }
             }
             .toolbar {
@@ -28,7 +41,7 @@ struct PostsList: View {
                 NewPostForm(createAction: vm.makeCreateAction())
             }
             .navigationTitle("Posts")
-            .overlay { noResultView }
+            //.overlay { noResultView }
             .searchable(text: $searchText)
         }
         .onAppear {
@@ -41,13 +54,30 @@ struct PostsList: View {
 
 private extension PostsList {
     
-    var noResultView: some View {
-        ForEach(vm.posts) { post in
-            if !searchText.isEmpty && !post.contains(searchText) {
-                ContentUnavailableView.search(text: searchText)
-            }
-        }
-    }
+    
+ //   var noResultView: some View {
+        
+        
+        
+        
+        
+        
+        
+//        Group {
+//            switch vm.posts {
+//                
+//            case let .loaded(posts):
+//                ForEach(posts) { post in
+//                    if !searchText.isEmpty && !post.contains(searchText) {
+//                        ContentUnavailableView.search(text: searchText)
+//                    }
+//                }
+//            
+//            }
+//        }
+      
+       
+   // }
     
     var newPostBtn: some View {
         Button ("New Post", systemImage: "square.and.pencil") {
