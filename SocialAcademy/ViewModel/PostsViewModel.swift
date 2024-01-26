@@ -1,6 +1,5 @@
 //
-//  Posts
-//  ViewModel.swift
+//  PostsViewModel.swift
 //  SocialAcademy
 //
 //  Created by Kevin Martinez on 1/24/24.
@@ -8,15 +7,17 @@
 
 import Foundation
 
-@Observable
-final class postsViewModel {
+
+@MainActor
+final class PostsViewModel: ObservableObject  {
     
     //MARK: - Properties
     
-    var posts: Loadable<[Post]> = .loading
-    @ObservationIgnored private let postsRepository: PostsRepository
-    
-    init( postsRepository: PostsRepository = PostsRepository() ) {
+    @Published var posts: Loadable<[Post]> = .loading
+    private let postsRepository: PostsRepositoryProtocol
+
+
+    init( postsRepository: PostsRepositoryProtocol = PostsRepository() ) {
         
         self.postsRepository = postsRepository
     }

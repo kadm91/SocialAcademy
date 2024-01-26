@@ -11,9 +11,9 @@ import Firebase
 @main
 struct SocialAcademyApp: App {
     
-    @State private var PostsViewModel = postsViewModel()
+    @StateObject private var postsViewModel = PostsViewModel()
     
-//    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+  //  @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
     init() {
         FirebaseApp.configure()
@@ -22,7 +22,7 @@ struct SocialAcademyApp: App {
     var body: some Scene {
         WindowGroup {
             PostsList()
-                .environment(PostsViewModel)
+                .environmentObject(postsViewModel)
         }
     }
 }

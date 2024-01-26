@@ -14,14 +14,17 @@ protocol PostsRepositoryProtocol {
     func create (_ post: Post) async throws
 }
 
+
 struct PostsRepository: PostsRepositoryProtocol {
     
+    var postsReference = Firestore.firestore().collection("posts")
+        
     
-     let postsReference = Firestore.firestore().collection("posts")
+    
     
     //createe
     
-     func create(_ post: Post) async throws {
+      func create(_ post: Post) async throws {
         let document = postsReference.document(post.id.uuidString)
         try await document.setData(from: post)
     }
@@ -44,10 +47,6 @@ struct PostsRepository: PostsRepositoryProtocol {
 }
 
 
-
-
-
-
 //MARK: - DocumentReference extension
 
 private extension DocumentReference {
@@ -65,3 +64,16 @@ private extension DocumentReference {
         }
     }
 }
+
+
+//MARK: - Posts Repository Stub
+
+#if DEBUG
+struct PostsRepositoryStub: PostsRepositoryProtocol {
+    func fetchPosts() async throws -> [Post] {
+        return []
+    }
+    
+    func create(_ post: Post) async throws {}
+}
+#endif

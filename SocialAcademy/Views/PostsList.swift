@@ -9,7 +9,9 @@ import SwiftUI
 
 struct PostsList: View {
     
-    @Environment (postsViewModel.self) var vm
+    
+     @EnvironmentObject private var vm: PostsViewModel
+    
     @State private var searchText = ""
     @State private var showNewPostForm = false
     
@@ -37,9 +39,6 @@ struct PostsList: View {
 //MARK: - PostsList extension
 
 private extension PostsList {
-    
-    
-
     
 var postsList: some View {
         Group {
@@ -107,8 +106,15 @@ var postsList: some View {
 
 #Preview {
     PostsList()
-        .environment(postsViewModel())
+       .environmentObject(PostsViewModel())
 }
+
+#if DEBUG
+#Preview("Empty View") {
+    PostsList()
+        .environmentObject(PostsViewModel(postsRepository: PostsRepositoryStub()))
+}
+#endif
 
 
 
