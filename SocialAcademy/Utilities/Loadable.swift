@@ -30,8 +30,10 @@ enum Loadable<Value> {
 }
 
 
+
 extension Loadable where Value: RangeReplaceableCollection {
     static var empty: Loadable<Value> { .loaded(Value())}
+    
 }
 
 

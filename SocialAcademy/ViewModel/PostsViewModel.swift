@@ -33,6 +33,7 @@ final class postsViewModel {
                 posts =  .loaded( try await PostsRepository.fetchPosts() )
             } catch {
                 print("[PostsViewMOdel] Cannot fetch posts: \(error)")
+                posts = .error(error)
             }
         }
     }
