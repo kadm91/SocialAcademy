@@ -22,9 +22,7 @@ struct PostsList: View {
                 }
             }
             .toolbar {
-                Button ("New Post", systemImage: "square.and.pencil") {
-                    showNewPostForm.toggle()
-                }
+              newPostBtn
             }
             .sheet(isPresented: $showNewPostForm) {
                 NewPostForm(createAction: vm.makeCreateAction())
@@ -41,7 +39,7 @@ struct PostsList: View {
 
 //MARK: - PostsList extension
 
-extension PostsList {
+private extension PostsList {
     
     var noResultView: some View {
         ForEach(vm.posts) { post in
@@ -50,6 +48,14 @@ extension PostsList {
             }
         }
     }
+    
+    var newPostBtn: some View {
+        Button ("New Post", systemImage: "square.and.pencil") {
+            showNewPostForm.toggle()
+        }
+    }
+    
+ 
 }
 
 //MARK: - Preview
@@ -58,3 +64,7 @@ extension PostsList {
     PostsList()
         .environment(postsViewModel())
 }
+
+
+
+

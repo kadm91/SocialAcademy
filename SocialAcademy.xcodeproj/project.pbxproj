@@ -44,6 +44,7 @@
 		00B185022B604C63004499D3 /* NewPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185012B604C63004499D3 /* NewPostForm.swift */; };
 		00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185052B61A3DD004499D3 /* PostsViewModel.swift */; };
 		00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185082B621BD5004499D3 /* PostsRepository.swift */; };
+		00B1850C2B6369E0004499D3 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1850B2B6369E0004499D3 /* Loadable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		00B185012B604C63004499D3 /* NewPostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostForm.swift; sourceTree = "<group>"; };
 		00B185052B61A3DD004499D3 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		00B185082B621BD5004499D3 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
+		00B1850B2B6369E0004499D3 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				00B184FA2B5EE7D3004499D3 /* Models */,
 				00B185032B61A3B4004499D3 /* ViewModel */,
 				00B184F82B5EE6D1004499D3 /* Views */,
+				00B1850A2B6369C1004499D3 /* Utilities */,
 				00B184F92B5EE6F2004499D3 /* Resources */,
 			);
 			path = SocialAcademy;
@@ -177,6 +180,14 @@
 				00B185082B621BD5004499D3 /* PostsRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		00B1850A2B6369C1004499D3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				00B1850B2B6369E0004499D3 /* Loadable.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -287,6 +298,7 @@
 				00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */,
 				00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */,
 				00B185002B604349004499D3 /* PostRow.swift in Sources */,
+				00B1850C2B6369E0004499D3 /* Loadable.swift in Sources */,
 				00B184FE2B5EE8AD004499D3 /* PostsList.swift in Sources */,
 				00B185022B604C63004499D3 /* NewPostForm.swift in Sources */,
 			);
