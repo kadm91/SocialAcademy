@@ -9,6 +9,8 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+//MARK: - PostRepository Protocol
+
 protocol PostsRepositoryProtocol {
     func fetchPosts () async throws -> [Post]
     func create (_ post: Post) async throws
