@@ -110,10 +110,53 @@ var postsList: some View {
 }
 
 #if DEBUG
-#Preview("Empty View") {
-    PostsList()
-        .environmentObject(PostsViewModel(postsRepository: PostsRepositoryStub()))
+
+#Preview("Empty State") {
+    
+    do {
+        let state: Loadable<[Post]> = .empty
+        let postRepository = PostsRepositoryStub(state: state)
+        let vm = PostsViewModel(postsRepository: postRepository)
+        return PostsList().environmentObject(vm)
+            
+    }
+    
 }
+
+#Preview("Loaded State") {
+    
+    do {
+        let state: Loadable<[Post]> = .loaded([Post.testPost])
+        let postRepository = PostsRepositoryStub(state: state)
+        let vm = PostsViewModel(postsRepository: postRepository)
+        return PostsList().environmentObject(vm)
+            
+    }
+    
+}
+
+#Preview("Error State") {
+    
+    do {
+        let state: Loadable<[Post]> = .error
+        let postRepository = PostsRepositoryStub(state: state)
+        let vm = PostsViewModel(postsRepository: postRepository)
+        return PostsList().environmentObject(vm)
+    }
+    
+}
+
+#Preview("Loading State") {
+    
+    do {
+        let state: Loadable<[Post]> = .loading
+        let postRepository = PostsRepositoryStub(state: state)
+        let vm = PostsViewModel(postsRepository: postRepository)
+        return PostsList().environmentObject(vm)
+    }
+    
+}
+
 #endif
 
 
