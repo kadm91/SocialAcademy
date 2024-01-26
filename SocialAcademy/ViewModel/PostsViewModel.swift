@@ -10,7 +10,11 @@ import Foundation
 
 @Observable
 final class postsViewModel {
-    var posts = [Post]()
+    
+    //MARK: - Properties
+    
+    var posts: Loadable<[Post]> = .loading
+    
     
     //MARK: - intentions
     
@@ -18,7 +22,7 @@ final class postsViewModel {
     func makeCreateAction() -> NewPostForm.CreateAction {
         return {[weak self] post in
             try await PostsRepository.create(post)
-            self?.posts.insert(post, at: 0)
+            self?.posts.value?.insert(post, at: 0) 
         }
     }
     
@@ -26,7 +30,7 @@ final class postsViewModel {
     func fetchPosts() {
         Task {
             do {
-                posts = try await PostsRepository.fetchPosts()
+                posts =  .loaded( try await PostsRepository.fetchPosts() )
             } catch {
                 print("[PostsViewMOdel] Cannot fetch posts: \(error)")
             }
