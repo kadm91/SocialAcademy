@@ -41,6 +41,9 @@
 		00B184FC2B5EE7F5004499D3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B184FB2B5EE7F5004499D3 /* Post.swift */; };
 		00B184FE2B5EE8AD004499D3 /* PostsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B184FD2B5EE8AD004499D3 /* PostsList.swift */; };
 		00B185002B604349004499D3 /* PostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B184FF2B604349004499D3 /* PostRow.swift */; };
+		00B185022B604C63004499D3 /* NewPostForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185012B604C63004499D3 /* NewPostForm.swift */; };
+		00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185052B61A3DD004499D3 /* PostsViewModel.swift */; };
+		00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185082B621BD5004499D3 /* PostsRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		00B184FB2B5EE7F5004499D3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		00B184FD2B5EE8AD004499D3 /* PostsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsList.swift; sourceTree = "<group>"; };
 		00B184FF2B604349004499D3 /* PostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRow.swift; sourceTree = "<group>"; };
+		00B185012B604C63004499D3 /* NewPostForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostForm.swift; sourceTree = "<group>"; };
+		00B185052B61A3DD004499D3 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
+		00B185082B621BD5004499D3 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,7 +118,9 @@
 			isa = PBXGroup;
 			children = (
 				00B184B12B5EDE76004499D3 /* SocialAcademyApp.swift */,
+				00B185072B621BAC004499D3 /* Repositories */,
 				00B184FA2B5EE7D3004499D3 /* Models */,
+				00B185032B61A3B4004499D3 /* ViewModel */,
 				00B184F82B5EE6D1004499D3 /* Views */,
 				00B184F92B5EE6F2004499D3 /* Resources */,
 			);
@@ -132,6 +140,7 @@
 			children = (
 				00B184FD2B5EE8AD004499D3 /* PostsList.swift */,
 				00B184FF2B604349004499D3 /* PostRow.swift */,
+				00B185012B604C63004499D3 /* NewPostForm.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -152,6 +161,22 @@
 				00B184FB2B5EE7F5004499D3 /* Post.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		00B185032B61A3B4004499D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				00B185052B61A3DD004499D3 /* PostsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		00B185072B621BAC004499D3 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				00B185082B621BD5004499D3 /* PostsRepository.swift */,
+			);
+			path = Repositories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,10 +282,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */,
 				00B184FC2B5EE7F5004499D3 /* Post.swift in Sources */,
+				00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */,
 				00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */,
 				00B185002B604349004499D3 /* PostRow.swift in Sources */,
 				00B184FE2B5EE8AD004499D3 /* PostsList.swift in Sources */,
+				00B185022B604C63004499D3 /* NewPostForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

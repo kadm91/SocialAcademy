@@ -9,24 +9,29 @@ import SwiftUI
 
 struct PostsList: View {
     
-    private var posts = [Post.testPost]
+    @Environment (postsViewModel.self) var vm
     @State private var searchText = ""
+    @State private var showNewPostForm = false
     
     var body: some View {
     
         NavigationStack {
-            List(posts) { post in
+            List(vm.posts) { post in
                 if searchText.isEmpty || post.contains(searchText) {
                     PostRow(post: post)
                 }
             }
+            .toolbar {
+                Button ("New Post", systemImage: "square.and.pencil") {
+                    showNewPostForm.toggle()
+                }
+            }
+            .sheet(isPresented: $showNewPostForm) {
+                NewPostForm(createAction: vm.makeCreateAction())
+            }
             .navigationTitle("Posts")
             .overlay { noResultView }
             .searchable(text: $searchText)
-          
-                
-            
-            
         }
     }
 }
@@ -36,7 +41,7 @@ struct PostsList: View {
 extension PostsList {
     
     var noResultView: some View {
-        ForEach(posts) { post in
+        ForEach(vm.posts) { post in
             if !searchText.isEmpty && !post.contains(searchText) {
                 ContentUnavailableView.search(text: searchText)
             }
@@ -48,4 +53,5 @@ extension PostsList {
 
 #Preview {
     PostsList()
+        .environment(postsViewModel())
 }

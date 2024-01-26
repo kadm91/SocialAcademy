@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Post: Identifiable {
+struct Post: Identifiable, Codable {
     var id = UUID()
     var title: String
     var content: String
@@ -20,6 +20,20 @@ struct Post: Identifiable {
         let query = string.lowercased()
         let matches = properties.filter {$0.contains(query)}
         return !matches.isEmpty
+    }
+    
+    init(title: String, content: String, authorName: String, timestamp: Date = Date()) {
+     
+        self.title = title
+        self.content = content
+        self.authorName = authorName
+        self.timestamp = timestamp
+    }
+    
+    init() {
+        self.init( title: "",
+                   content: "",
+                   authorName: "")
     }
     
     
