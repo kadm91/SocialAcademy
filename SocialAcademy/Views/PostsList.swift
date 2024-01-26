@@ -33,6 +33,9 @@ struct PostsList: View {
             .overlay { noResultView }
             .searchable(text: $searchText)
         }
+        .onAppear {
+            vm.fetchPosts()
+        }
     }
 }
 

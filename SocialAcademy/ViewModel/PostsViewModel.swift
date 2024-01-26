@@ -10,14 +10,26 @@ import Foundation
 
 @Observable
 final class postsViewModel {
-    var posts = [Post.testPost]
+    var posts = [Post]()
     
     //MARK: - intentions
     
+    // Create post
     func makeCreateAction() -> NewPostForm.CreateAction {
         return {[weak self] post in
             try await PostsRepository.create(post)
             self?.posts.insert(post, at: 0)
+        }
+    }
+    
+    // Fetch Posts
+    func fetchPosts() {
+        Task {
+            do {
+                posts = try await PostsRepository.fetchPosts()
+            } catch {
+                print("[PostsViewMOdel] Cannot fetch posts: \(error)")
+            }
         }
     }
 }
