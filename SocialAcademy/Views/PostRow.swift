@@ -29,9 +29,25 @@ struct PostRow: View {
                     .font(.title3)
                     .fontWeight(.semibold)
                 Text(post.content)
+                
+                HStack {
+                    Spacer()
+                    Button(role: .destructive, action: deletePost) {
+                        Label("Delete", systemImage: "trash")
+                    }
+                    .labelStyle(.iconOnly)
+                }
+                
+                
             }
             .padding(.vertical)
         }
+    
+    private func deletePost() {
+        Task {
+            try! await deleteAction()
+        }
+    }
 }
 
 #Preview {

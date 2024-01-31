@@ -10,7 +10,7 @@ import SwiftUI
 struct PostsList: View {
     
     
-     @EnvironmentObject private var vm: PostsViewModel
+    @EnvironmentObject private var vm: PostsViewModel
     
     @State private var searchText = ""
     @State private var showNewPostForm = false
@@ -19,15 +19,15 @@ struct PostsList: View {
         
         NavigationStack {
             postsList
-               
-            .toolbar {
-              newPostBtn
-            }
-            .sheet(isPresented: $showNewPostForm) {
-                NewPostForm(createAction: vm.makeCreateAction())
-            }
-           
-            .navigationTitle("Posts")
+            
+                .toolbar {
+                    newPostBtn
+                }
+                .sheet(isPresented: $showNewPostForm) {
+                    NewPostForm(createAction: vm.makeCreateAction())
+                }
+            
+                .navigationTitle("Posts")
         }
         
         .onAppear {
@@ -40,7 +40,7 @@ struct PostsList: View {
 
 private extension PostsList {
     
-var postsList: some View {
+    var postsList: some View {
         Group {
             switch vm.posts {
             case .loading:
@@ -53,13 +53,13 @@ var postsList: some View {
                 
                 List(posts) { post in
                     if searchText.isEmpty || post.contains(searchText) {
-                        PostRow(post: post)
+                        PostRow(post: post,  deleteAction: vm.makeDeleteAction(for: post))
                     }
                 }
                 .searchable(text: $searchText)
             }
         }
-       
+        
     }
     
     var newPostBtn: some View {
@@ -70,43 +70,43 @@ var postsList: some View {
     
     func errorView(message: String) -> some View {
         ContentUnavailableView(
-        label: {
-            Label(
-                title: { Text("Cannot Load Posts") },
-                icon: { Image(systemName: "exclamationmark.triangle.fill").foregroundColor(.red)  }
-            )
-        }, description: {
-            Text(message)
-        }, actions: {
-            Button {
-                vm.fetchPosts()
-            } label: {
-                Text("Try Again")
-                    .bold()
-                    .font(.headline)
-            }
-            
-            .buttonStyle(.borderless)
-            
-        })
-
+            label: {
+                Label(
+                    title: { Text("Cannot Load Posts") },
+                    icon: { Image(systemName: "exclamationmark.triangle.fill").foregroundColor(.red)  }
+                )
+            }, description: {
+                Text(message)
+            }, actions: {
+                Button {
+                    vm.fetchPosts()
+                } label: {
+                    Text("Try Again")
+                        .bold()
+                        .font(.headline)
+                }
+                
+                .buttonStyle(.borderless)
+                
+            })
+        
     }
     
     var emptyView: some View {
         ContentUnavailableView("No Posts", systemImage: "note", description: Text("There aren't any Posts yet."))
     }
     
- 
-
     
-        
+    
+    
+    
 }
 
 //MARK: - Preview
 
 #Preview {
     PostsList()
-       .environmentObject(PostsViewModel())
+        .environmentObject(PostsViewModel())
 }
 
 #if DEBUG
@@ -118,7 +118,7 @@ var postsList: some View {
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
         return PostsList().environmentObject(vm)
-            
+        
     }
     
 }
@@ -130,7 +130,7 @@ var postsList: some View {
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
         return PostsList().environmentObject(vm)
-            
+        
     }
     
 }
