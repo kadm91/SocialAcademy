@@ -57,6 +57,9 @@ private extension PostsList {
                     }
                 }
                 .searchable(text: $searchText)
+                .animation(.default, value: posts)
+               
+                
             }
         }
         
