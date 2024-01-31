@@ -14,11 +14,6 @@ struct PostRow: View {
     @ObservedObject var vm: PostRowViewModel
     
     @State private var showConfirmationDialog = false
-    //@State private var error: Error?
-    
-   // let post: Post
-//    let deleteAction: Action
-//    let favoriteAction: Action
     
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
