@@ -9,13 +9,15 @@ import SwiftUI
 
 struct PostRow: View {
     
-    typealias DeleteAction = () async throws -> Void
+    typealias Action = () async throws -> Void
+    
     
     @State private var showConfirmationDialog = false
     @State private var error: Error?
     
     let post: Post
-    let deleteAction: DeleteAction
+    let deleteAction: Action
+    let favoriteAction: Action
     
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
@@ -69,5 +71,5 @@ struct PostRow: View {
 }
 
 #Preview {
-    PostRow(post: Post.testPost, deleteAction: {})
+    PostRow(post: Post.testPost, deleteAction: {}, favoriteAction: {})
 }

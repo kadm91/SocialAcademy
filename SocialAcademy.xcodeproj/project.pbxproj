@@ -105,6 +105,7 @@
 		007870B72B6A182B0020077D /* Supporting Views */ = {
 			isa = PBXGroup;
 			children = (
+				00B184FF2B604349004499D3 /* PostRow.swift */,
 				007870B82B6A18AC0020077D /* Alert+Error.swift */,
 			);
 			path = "Supporting Views";
@@ -152,7 +153,6 @@
 			isa = PBXGroup;
 			children = (
 				00B184FD2B5EE8AD004499D3 /* PostsList.swift */,
-				00B184FF2B604349004499D3 /* PostRow.swift */,
 				00B185012B604C63004499D3 /* NewPostForm.swift */,
 				007870B72B6A182B0020077D /* Supporting Views */,
 			);

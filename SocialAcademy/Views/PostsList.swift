@@ -54,7 +54,7 @@ private extension PostsList {
                 
                 List(posts) { post in
                     if searchText.isEmpty || post.contains(searchText) {
-                        PostRow(post: post,  deleteAction: vm.makeDeleteAction(for: post))
+                        PostRow(post: post,  deleteAction: vm.makeDeleteAction(for: post), favoriteAction: {})
                     }
                 }
                 .searchable(text: $searchText)

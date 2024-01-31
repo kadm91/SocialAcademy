@@ -47,7 +47,7 @@ final class PostsViewModel: ObservableObject  {
     
     // Delete
     
-    func makeDeleteAction(for post: Post) -> PostRow.DeleteAction {
+    func makeDeleteAction(for post: Post) -> PostRow.Action {
         return { [weak self] in
             try await self?.postsRepository.delete(post)
             self?.posts.value?.removeAll(where: {$0.id == post.id})
