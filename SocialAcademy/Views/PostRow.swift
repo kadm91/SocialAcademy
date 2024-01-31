@@ -11,6 +11,8 @@ struct PostRow: View {
     
     typealias DeleteAction = () async throws -> Void
     
+    @State private var showConfirmationDialog = false
+    
     let post: Post
     let deleteAction: DeleteAction
     
@@ -32,7 +34,9 @@ struct PostRow: View {
                 
                 HStack {
                     Spacer()
-                    Button(role: .destructive, action: deletePost) {
+                    Button(role: .destructive, action: {
+                        showConfirmationDialog.toggle()
+                    }) {
                         Label("Delete", systemImage: "trash")
                     }
                     .labelStyle(.iconOnly)
@@ -42,6 +46,9 @@ struct PostRow: View {
                 
             }
             .padding(.vertical)
+            .confirmationDialog("Are you sure you want to delete this post?", isPresented: $showConfirmationDialog, titleVisibility: .visible) {
+                Button("Delete", role: .destructive, action: deletePost)
+            }
         }
     
     private func deletePost() {

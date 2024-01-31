@@ -14,6 +14,7 @@ struct PostsList: View {
     
     @State private var searchText = ""
     @State private var showNewPostForm = false
+   
     
     var body: some View {
         
