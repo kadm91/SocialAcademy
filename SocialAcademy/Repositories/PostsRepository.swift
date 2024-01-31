@@ -22,12 +22,9 @@ protocol PostsRepositoryProtocol {
 
 struct PostsRepository: PostsRepositoryProtocol {
     
-
-    
-   
     
     
-    var postsReference = Firestore.firestore().collection("posts")
+    var postsReference = Firestore.firestore().collection("posts_v1")
         
     
     //createe
