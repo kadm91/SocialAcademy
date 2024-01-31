@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		00396B762B644A5A00E683FD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00396B752B644A5A00E683FD /* GoogleService-Info.plist */; };
 		007870B92B6A18AC0020077D /* Alert+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007870B82B6A18AC0020077D /* Alert+Error.swift */; };
+		007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007870BA2B6AB4290020077D /* PostRowViewModel.swift */; };
 		00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B184B12B5EDE76004499D3 /* SocialAcademyApp.swift */; };
 		00B184B62B5EDE77004499D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00B184B52B5EDE77004499D3 /* Assets.xcassets */; };
 		00B184B92B5EDE77004499D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00B184B82B5EDE77004499D3 /* Preview Assets.xcassets */; };
@@ -51,6 +52,7 @@
 /* Begin PBXFileReference section */
 		00396B752B644A5A00E683FD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		007870B82B6A18AC0020077D /* Alert+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Error.swift"; sourceTree = "<group>"; };
+		007870BA2B6AB4290020077D /* PostRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowViewModel.swift; sourceTree = "<group>"; };
 		00B184AE2B5EDE76004499D3 /* SocialAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B184B12B5EDE76004499D3 /* SocialAcademyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAcademyApp.swift; sourceTree = "<group>"; };
 		00B184B52B5EDE77004499D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				00B185052B61A3DD004499D3 /* PostsViewModel.swift */,
+				007870BA2B6AB4290020077D /* PostRowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */,
+				007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */,
 				00B184FC2B5EE7F5004499D3 /* Post.swift in Sources */,
 				00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */,
 				00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */,

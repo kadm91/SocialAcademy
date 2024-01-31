@@ -11,32 +11,33 @@ struct PostRow: View {
     
     typealias Action = () async throws -> Void
     
+    @ObservedObject var vm: PostRowViewModel
     
     @State private var showConfirmationDialog = false
-    @State private var error: Error?
+    //@State private var error: Error?
     
-    let post: Post
-    let deleteAction: Action
-    let favoriteAction: Action
+   // let post: Post
+//    let deleteAction: Action
+//    let favoriteAction: Action
     
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Text(post.authorName)
+                    Text(vm.authorName)
                         .font(.subheadline)
                         .fontWeight(.medium)
                     Spacer()
-                    Text(post.timestamp.formatted(date: .abbreviated, time: .omitted))
+                    Text(vm.timestamp.formatted(date: .abbreviated, time: .omitted))
                         .font(.caption)
                 }
                 .foregroundColor(.gray)
-                Text(post.title)
+                Text(vm.title)
                     .font(.title3)
                     .fontWeight(.semibold)
-                Text(post.content)
+                Text(vm.content)
                 
                 HStack {
-                    FavoriteButton(isFavorite: post.isFavorite, action: favoritePost)
+                    FavoriteButton(isFavorite: vm.isFavorite, action: { vm.favoritePost() })
                     Spacer()
                     Button(role: .destructive, action: {
                         showConfirmationDialog.toggle()
@@ -51,34 +52,12 @@ struct PostRow: View {
             }
             .padding(.vertical)
             .confirmationDialog("Are you sure you want to delete this post?", isPresented: $showConfirmationDialog, titleVisibility: .visible) {
-                Button("Delete", role: .destructive, action: deletePost)
+                Button("Delete", role: .destructive, action: { vm.deletePost() })
             }
-            .alert("Cannot Delete Post", error: $error)
+            .alert("Error", error: $vm.error)
         }
     
-    
-    private func deletePost() {
-        Task {
-            do {
-                try await deleteAction()
-            } catch {
-                print("[PostRow] Cannot delete post: \(error)")
-                self.error = error
-            }
-        }
-    }
-    
-    
-    private func favoritePost() {
-        Task {
-            do {
-                try await favoriteAction()
-            } catch {
-                print("[PostRow] Cannont Favorite Post: \(error)")
-                self.error = error
-            }
-        }
-    }
+  
 }
 
 
@@ -102,5 +81,5 @@ private extension PostRow {
 }
 
 #Preview {
-    PostRow(post: Post.testPost, deleteAction: {}, favoriteAction: {})
+    PostRow(vm: PostRowViewModel(post: Post.testPost, deleteAction: {}, favoriteAction: {}))
 }
