@@ -10,7 +10,7 @@ import SwiftUI
 struct PostsList: View {
     
     
-    @EnvironmentObject private var vm: PostsViewModel
+    @StateObject var vm = PostsViewModel()
     
     @State private var searchText = ""
     @State private var showNewPostForm = false
@@ -28,7 +28,7 @@ struct PostsList: View {
                     NewPostForm(createAction: vm.makeCreateAction())
                 }
             
-                .navigationTitle("Posts")
+                .navigationTitle(vm.title)
         }
         
         .onAppear {
@@ -110,7 +110,7 @@ private extension PostsList {
 
 #Preview {
     PostsList()
-        .environmentObject(PostsViewModel())
+        
 }
 
 #if DEBUG
@@ -121,7 +121,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .empty
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList().environmentObject(vm)
+        return PostsList(vm: vm)
         
     }
     
@@ -133,7 +133,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .loaded([Post.testPost])
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList().environmentObject(vm)
+        return PostsList(vm: vm)
         
     }
     
@@ -145,7 +145,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .error
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList().environmentObject(vm)
+        return PostsList(vm: vm)
     }
     
 }
@@ -156,7 +156,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .loading
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList().environmentObject(vm)
+        return PostsList(vm: vm)
     }
     
 }

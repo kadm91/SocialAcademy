@@ -18,12 +18,17 @@ final class PostsViewModel: ObservableObject  {
     //MARK: - Properties
     
 
-    
-    
     @Published var posts: Loadable<[Post]> = .loading
     private let postsRepository: PostsRepositoryProtocol
     private let filter: Filter
-
+    var title: String {
+        switch filter {
+        case .all:
+            return "Posts"
+        case .favorites:
+            return "Favorites"
+        }
+    }
 
     init(filter: Filter = .all, postsRepository: PostsRepositoryProtocol = PostsRepository() ) {
         
