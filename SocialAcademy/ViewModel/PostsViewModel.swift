@@ -11,16 +11,27 @@ import Foundation
 @MainActor
 final class PostsViewModel: ObservableObject  {
     
+    
+    enum Filter {
+        case all, favorites
+    }
     //MARK: - Properties
+    
+
+    
     
     @Published var posts: Loadable<[Post]> = .loading
     private let postsRepository: PostsRepositoryProtocol
+    private let filter: Filter
 
 
-    init( postsRepository: PostsRepositoryProtocol = PostsRepository() ) {
+    init(filter: Filter = .all, postsRepository: PostsRepositoryProtocol = PostsRepository() ) {
         
+        self.filter = filter
         self.postsRepository = postsRepository
     }
+    
+
     
     
     //MARK: - intentions
@@ -37,7 +48,7 @@ final class PostsViewModel: ObservableObject  {
     func fetchPosts() {
         Task {
             do {
-                posts =  .loaded( try await postsRepository.fetchAllPosts() )
+                posts =  .loaded( try await postsRepository.fetchPosts(matching: filter) )
             } catch {
                 print("[PostsViewMOdel] Cannot fetch posts: \(error)")
                 posts = .error(error)
@@ -67,7 +78,19 @@ final class PostsViewModel: ObservableObject  {
         )
     }
     
+}
+
+private extension PostsRepositoryProtocol {
     
-    
+    func fetchPosts(matching filter: PostsViewModel.Filter) async throws -> [Post] {
+        switch filter {
+        case .all:
+            return try await fetchAllPosts()
+        case .favorites:
+            return try await fetchFavoritePosts()
+        }
+    }
     
 }
+
+
