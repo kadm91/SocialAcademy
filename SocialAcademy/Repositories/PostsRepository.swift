@@ -22,50 +22,29 @@ protocol PostsRepositoryProtocol {
 
 
 struct PostsRepository: PostsRepositoryProtocol {
-  
-    
-    
-    
     
     var postsReference = Firestore.firestore().collection("posts_v1")
-        
     
     //createe
     
-      func create(_ post: Post) async throws {
+    func create(_ post: Post) async throws {
         let document = postsReference.document(post.id.uuidString)
         try await document.setData(from: post)
     }
     
     //Fetch
     
-     func fetchAllPosts() async throws -> [Post] {
-         let query = postsReference.order(by: "timestamp", descending: true)
-         let snapshot = try await query.getDocuments()
-         let posts = snapshot.documents.compactMap { document in
-             try! document.data(as: Post.self)
-         }
-         return posts
-//        let snapshot = try await postsReference
-//            .order(by: "timestamp", descending: true)
-//            .getDocuments()
-//        
-//        return snapshot.documents.compactMap { document in
-//            try! document.data(as: Post.self)
-//        }
+    func fetchAllPosts() async throws -> [Post] {
+        return try await fetchPosts(from: postsReference)
+        
     }
     
     // Fetch Favorite Posts
     
     func fetchFavoritePosts() async throws -> [Post] {
-        let query = postsReference.order(by: "timestamp", descending: true).whereField("isFavorite", isEqualTo: true)
-        let snapshot = try await query.getDocuments()
-        let posts = snapshot.documents.compactMap { document in
-            try! document.data(as: Post.self)
-        }
-        return posts
+        return try await fetchPosts(from: postsReference.whereField("isFavorite", isEqualTo: true))
     }
-     
+    
     // Delete
     
     func delete(_ post: Post) async throws {
@@ -74,14 +53,6 @@ struct PostsRepository: PostsRepositoryProtocol {
     }
     
     // Favorite
-    
-//    func favorite(_ post: Post) async throws {
-//        var post = post
-//        post.isFavorite = true
-//        
-//        let document = postsReference.document(post.id.uuidString)
-//        try await document.setData(from: post)
-//    }
     
     func favorite(_ post: Post) async throws {
         let document = postsReference.document(post.id.uuidString)
@@ -95,6 +66,17 @@ struct PostsRepository: PostsRepositoryProtocol {
         try await document.setData(["isFavorite": false], merge: true)
     }
     
+    
+    //MARK: - Helper Methods
+    
+    private func fetchPosts(from query: Query) async throws -> [Post] {
+        let query = query.order(by: "timestamp", descending: true)
+        let snapshot = try await query.getDocuments()
+        let posts = snapshot.documents.compactMap { document in
+            try! document.data(as: Post.self)
+        }
+        return posts
+    }
     
 }
 
