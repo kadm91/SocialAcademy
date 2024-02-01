@@ -37,7 +37,7 @@ final class PostsViewModel: ObservableObject  {
     func fetchPosts() {
         Task {
             do {
-                posts =  .loaded( try await postsRepository.fetchPosts() )
+                posts =  .loaded( try await postsRepository.fetchAllPosts() )
             } catch {
                 print("[PostsViewMOdel] Cannot fetch posts: \(error)")
                 posts = .error(error)

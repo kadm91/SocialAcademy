@@ -5,14 +5,15 @@
 //  Created by Kevin Martinez on 1/24/24.
 //
 
-import Foundation
+import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 //MARK: - PostRepository Protocol
 
 protocol PostsRepositoryProtocol {
-    func fetchPosts () async throws -> [Post]
+    func fetchAllPosts () async throws -> [Post]
+    func fetchFavoritePosts() async throws  -> [Post]
     func create (_ post: Post) async throws
     func delete (_ post: Post) async throws
     func favorite (_ post: Post) async throws
@@ -21,6 +22,8 @@ protocol PostsRepositoryProtocol {
 
 
 struct PostsRepository: PostsRepositoryProtocol {
+  
+    
     
     
     
@@ -36,14 +39,31 @@ struct PostsRepository: PostsRepositoryProtocol {
     
     //Fetch
     
-     func fetchPosts() async throws -> [Post] {
-        let snapshot = try await postsReference
-            .order(by: "timestamp", descending: true)
-            .getDocuments()
-        
-        return snapshot.documents.compactMap { document in
+     func fetchAllPosts() async throws -> [Post] {
+         let query = postsReference.order(by: "timestamp", descending: true)
+         let snapshot = try await query.getDocuments()
+         let posts = snapshot.documents.compactMap { document in
+             try! document.data(as: Post.self)
+         }
+         return posts
+//        let snapshot = try await postsReference
+//            .order(by: "timestamp", descending: true)
+//            .getDocuments()
+//        
+//        return snapshot.documents.compactMap { document in
+//            try! document.data(as: Post.self)
+//        }
+    }
+    
+    // Fetch Favorite Posts
+    
+    func fetchFavoritePosts() async throws -> [Post] {
+        let query = postsReference.order(by: "timestamp", descending: true).whereField("isFavorite", isEqualTo: true)
+        let snapshot = try await query.getDocuments()
+        let posts = snapshot.documents.compactMap { document in
             try! document.data(as: Post.self)
         }
+        return posts
     }
      
     // Delete
@@ -102,6 +122,10 @@ private extension DocumentReference {
 
 #if DEBUG
 struct PostsRepositoryStub: PostsRepositoryProtocol {
+    func fetchFavoritePosts() async throws -> [Post] {
+        return [Post]()
+    }
+    
     func favorite(_ post: Post) async throws {
         
     }
@@ -119,7 +143,7 @@ struct PostsRepositoryStub: PostsRepositoryProtocol {
     
     let state: Loadable<[Post]>
     
-    func fetchPosts() async throws -> [Post] {
+    func fetchAllPosts() async throws -> [Post] {
         return try await state.simulate()
     }
     
