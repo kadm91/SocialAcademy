@@ -97,7 +97,7 @@ private extension PostsList {
     }
     
     var emptyView: some View {
-        ContentUnavailableView("No Posts", systemImage: "note", description: Text("There aren't any Posts yet."))
+        ContentUnavailableView( vm.title == "Posts" ? "No Posts" : "No Favorite Posts", systemImage: vm.title == "Posts" ? "note" : "heart", description: vm.title == "Posts" ? Text("There aren't any Posts yet.") : Text("There aren't any favorite Posts yet"))
     }
     
     
