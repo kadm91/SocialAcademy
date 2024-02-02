@@ -48,6 +48,7 @@
 		00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B185082B621BD5004499D3 /* PostsRepository.swift */; };
 		00B1850C2B6369E0004499D3 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1850B2B6369E0004499D3 /* Loadable.swift */; };
 		00C3007A2B6BFD1900D8E404 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300792B6BFD1900D8E404 /* MainTabView.swift */; };
+		00C3007D2B6D4C2E00D8E404 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3007C2B6D4C2E00D8E404 /* AuthService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		00B185082B621BD5004499D3 /* PostsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRepository.swift; sourceTree = "<group>"; };
 		00B1850B2B6369E0004499D3 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		00C300792B6BFD1900D8E404 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		00C3007C2B6D4C2E00D8E404 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				00B184B12B5EDE76004499D3 /* SocialAcademyApp.swift */,
+				00C3007B2B6D4C0F00D8E404 /* Services */,
 				00B185072B621BAC004499D3 /* Repositories */,
 				00B184FA2B5EE7D3004499D3 /* Models */,
 				00B185032B61A3B4004499D3 /* ViewModel */,
@@ -205,6 +208,14 @@
 				00B1850B2B6369E0004499D3 /* Loadable.swift */,
 			);
 			path = Utilities;
+			sourceTree = "<group>";
+		};
+		00C3007B2B6D4C0F00D8E404 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				00C3007C2B6D4C2E00D8E404 /* AuthService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,6 +324,7 @@
 				00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */,
 				007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */,
 				00B184FC2B5EE7F5004499D3 /* Post.swift in Sources */,
+				00C3007D2B6D4C2E00D8E404 /* AuthService.swift in Sources */,
 				00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */,
 				00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */,
 				00C3007A2B6BFD1900D8E404 /* MainTabView.swift in Sources */,
