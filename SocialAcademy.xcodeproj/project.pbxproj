@@ -50,6 +50,7 @@
 		00C3007A2B6BFD1900D8E404 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300792B6BFD1900D8E404 /* MainTabView.swift */; };
 		00C3007D2B6D4C2E00D8E404 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3007C2B6D4C2E00D8E404 /* AuthService.swift */; };
 		00C3007F2B6D517400D8E404 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3007E2B6D517400D8E404 /* AuthViewModel.swift */; };
+		00C300812B6D530E00D8E404 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300802B6D530E00D8E404 /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		00C300792B6BFD1900D8E404 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		00C3007C2B6D4C2E00D8E404 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		00C3007E2B6D517400D8E404 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		00C300802B6D530E00D8E404 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				00B184FD2B5EE8AD004499D3 /* PostsList.swift */,
 				00B185012B604C63004499D3 /* NewPostForm.swift */,
 				007870B72B6A182B0020077D /* Supporting Views */,
+				00C300802B6D530E00D8E404 /* AuthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -324,6 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C300812B6D530E00D8E404 /* AuthView.swift in Sources */,
 				00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */,
 				007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */,
 				00B184FC2B5EE7F5004499D3 /* Post.swift in Sources */,
