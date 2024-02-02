@@ -49,6 +49,7 @@
 		00B1850C2B6369E0004499D3 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B1850B2B6369E0004499D3 /* Loadable.swift */; };
 		00C3007A2B6BFD1900D8E404 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300792B6BFD1900D8E404 /* MainTabView.swift */; };
 		00C3007D2B6D4C2E00D8E404 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3007C2B6D4C2E00D8E404 /* AuthService.swift */; };
+		00C3007F2B6D517400D8E404 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3007E2B6D517400D8E404 /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		00B1850B2B6369E0004499D3 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		00C300792B6BFD1900D8E404 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		00C3007C2B6D4C2E00D8E404 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		00C3007E2B6D517400D8E404 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,6 +192,7 @@
 			children = (
 				00B185052B61A3DD004499D3 /* PostsViewModel.swift */,
 				007870BA2B6AB4290020077D /* PostRowViewModel.swift */,
+				00C3007E2B6D517400D8E404 /* AuthViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				00B185002B604349004499D3 /* PostRow.swift in Sources */,
 				00B1850C2B6369E0004499D3 /* Loadable.swift in Sources */,
 				00B184FE2B5EE8AD004499D3 /* PostsList.swift in Sources */,
+				00C3007F2B6D517400D8E404 /* AuthViewModel.swift in Sources */,
 				00B185022B604C63004499D3 /* NewPostForm.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
