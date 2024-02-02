@@ -16,6 +16,9 @@ struct MainTabView: View {
             
             PostsList(vm: PostsViewModel(filter: .favorites))
                 .tabItem { Label("Favorites", systemImage: "heart") }
+            
+            ProfileView()
+                .tabItem { Label("Profile", systemImage: "person") }
         }
     }
 }
