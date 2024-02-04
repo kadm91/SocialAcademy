@@ -15,6 +15,7 @@ class FormViewModel<Value>: ObservableObject {
     
     @Published var value: Value
     @Published var error: Error?
+    @Published var isWorking = false
     
     private let action: Action
     
@@ -35,12 +36,14 @@ class FormViewModel<Value>: ObservableObject {
     //MARK: - Methods
     
     private func hangleSubmit() async {
+        isWorking = true
         do {
             try await action(value)
         } catch {
             print("[FormViewModel] Cannot submit: \(error)")
             self.error = error
         }
+        isWorking = false
     }
     
   nonisolated func submit() {

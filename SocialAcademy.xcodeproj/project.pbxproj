@@ -53,6 +53,7 @@
 		00C300812B6D530E00D8E404 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300802B6D530E00D8E404 /* AuthView.swift */; };
 		00C300832B6D543E00D8E404 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300822B6D543E00D8E404 /* ProfileView.swift */; };
 		00C300852B6D6A6B00D8E404 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300842B6D6A6B00D8E404 /* FormViewModel.swift */; };
+		00C300872B701E9E00D8E404 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300862B701E9E00D8E404 /* PrimaryButtonStyle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		00C300802B6D530E00D8E404 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		00C300822B6D543E00D8E404 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		00C300842B6D6A6B00D8E404 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
+		00C300862B701E9E00D8E404 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				00B1850B2B6369E0004499D3 /* Loadable.swift */,
+				00C300862B701E9E00D8E404 /* PrimaryButtonStyle.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00C300872B701E9E00D8E404 /* PrimaryButtonStyle.swift in Sources */,
 				00C300812B6D530E00D8E404 /* AuthView.swift in Sources */,
 				00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */,
 				007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */,
