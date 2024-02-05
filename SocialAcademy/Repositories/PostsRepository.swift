@@ -31,6 +31,8 @@ struct PostsRepository: PostsRepositoryProtocol {
     
     var postsReference = Firestore.firestore().collection("posts_v2")
     
+    let favoritesReference = Firestore.firestore().collection("favorites")
+    
     // Fetch Posts by User
     
     func fetchPosts(by author: User) async throws -> [Post] {
@@ -55,7 +57,17 @@ struct PostsRepository: PostsRepositoryProtocol {
     // Fetch Favorite Posts
     
     func fetchFavoritePosts() async throws -> [Post] {
-        return try await fetchPosts(from: postsReference.whereField("isFavorite", isEqualTo: true))
+        
+        let favorites = try await fetchFavorites()
+        guard !favorites.isEmpty else { return [] }
+        
+       return try await postsReference
+            .whereField("id", in: favorites.map(\.uuidString))
+                  .order(by: "timestamp", descending: true)
+                  .getDocuments(as: Post.self)
+                  .map { post in
+                      post.setting(\.isFavorite, to: true)
+                  }
     }
     
     // Delete
@@ -69,29 +81,41 @@ struct PostsRepository: PostsRepositoryProtocol {
     // Favorite
     
     func favorite(_ post: Post) async throws {
-        let document = postsReference.document(post.id.uuidString)
-        try await document.setData(["isFavorite": true], merge: true)
+        
+        let favorite = Favorite(postID: post.id, userID: user.id)
+        let document = favoritesReference.document(favorite.id)
+        try await document.setData(from: favorite)
     }
     
     
     // Unfavorite
     func unfavorite(_ post: Post) async throws {
-        let document = postsReference.document(post.id.uuidString)
-        try await document.setData(["isFavorite": false], merge: true)
+            let favorite = Favorite(postID: post.id, userID: user.id)
+            let document = favoritesReference.document(favorite.id)
+            try await document.delete()
     }
     
-    
-    //MARK: - Helper Methods
-    
-    private func fetchPosts(from query: Query) async throws -> [Post] {
-        let query = query.order(by: "timestamp", descending: true)
-        let snapshot = try await query.getDocuments()
-        let posts = snapshot.documents.compactMap { document in
-            try! document.data(as: Post.self)
+}
+
+//MARK: - Firestore Query type extension
+
+private extension Query {
+    func getDocuments<T: Decodable> (as type: T.Type) async throws -> [T] {
+        let snapshot =  try await getDocuments()
+        return snapshot.documents.compactMap { document in
+            try! document.data(as: type)
         }
-        return posts
     }
-    
+}
+
+//MARK: - Post extension
+
+private extension Post {
+    func setting<T>(_ property: WritableKeyPath<Post, T>, to newValue: T) -> Post {
+        var post = self
+        post[keyPath: property] = newValue
+        return post
+    }
 }
 
 //MARK: - PostRepositoryProtocol extension
@@ -119,6 +143,38 @@ private extension DocumentReference {
     }
 }
 
+//MARK: - Model Favorites
+
+extension PostsRepository {
+    
+    struct Favorite: Identifiable, Codable {
+        
+        var id: String {
+            postID.uuidString + "-" + userID
+        }
+        let postID: Post.ID
+        let userID: User.ID
+    }
+    
+    func fetchFavorites() async throws -> [Post.ID] {
+         return try await favoritesReference
+            .whereField("userID", isEqualTo: user.id)
+            .getDocuments(as: Favorite.self)
+            .map(\.postID)
+    }
+    
+    private func fetchPosts(from query: Query) async throws -> [Post] {
+        
+        let (post, favorites) = try await (query.order(by: "timestamp", descending: true)
+            .getDocuments(as: Post.self), fetchFavorites())
+        
+        return post.map { post in
+            post.setting(\.isFavorite, to: favorites.contains(post.id))
+        }
+        
+        
+    }
+}
 
 //MARK: - Posts Repository Stub
 
@@ -148,8 +204,6 @@ struct PostsRepositoryStub: PostsRepositoryProtocol {
     func delete(_ post: Post) async throws {
         
     }
-    
-    
     
     let state: Loadable<[Post]>
     
