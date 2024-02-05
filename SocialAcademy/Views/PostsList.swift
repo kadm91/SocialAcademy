@@ -18,7 +18,7 @@ struct PostsList: View {
     
     var body: some View {
         
-        NavigationStack {
+        Group {
             postsList
             
                 .toolbar {
@@ -110,8 +110,9 @@ private extension PostsList {
 //MARK: - Preview
 
 #Preview {
-    PostsList(vm: PostsViewModel(postsRepository: PostsRepository(user: User.testUser)))
-        
+    NavigationStack {
+        PostsList(vm: PostsViewModel(postsRepository: PostsRepository(user: User.testUser)))
+    }
 }
 
 #if DEBUG
@@ -122,7 +123,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .empty
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList(vm: vm)
+        return NavigationStack { PostsList(vm: vm) }
         
     }
     
@@ -134,7 +135,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .loaded([Post.testPost])
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList(vm: vm)
+        return NavigationStack { PostsList(vm: vm) }
         
     }
     
@@ -146,7 +147,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .error
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList(vm: vm)
+        return NavigationStack { PostsList(vm: vm) }
     }
     
 }
@@ -157,7 +158,7 @@ private extension PostsList {
         let state: Loadable<[Post]> = .loading
         let postRepository = PostsRepositoryStub(state: state)
         let vm = PostsViewModel(postsRepository: postRepository)
-        return PostsList(vm: vm)
+        return NavigationStack { PostsList(vm: vm) }
     }
     
 }
