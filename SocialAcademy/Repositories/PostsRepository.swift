@@ -51,6 +51,7 @@ struct PostsRepository: PostsRepositoryProtocol {
     // Delete
     
     func delete(_ post: Post) async throws {
+        precondition(canDelete(post))
         let document = postsReference.document(post.id.uuidString)
         try await document.delete()
     }
@@ -83,7 +84,13 @@ struct PostsRepository: PostsRepositoryProtocol {
     
 }
 
+//MARK: - PostRepositoryProtocol extension
 
+extension PostsRepositoryProtocol {
+    func canDelete(_ post: Post) -> Bool {
+        post.author.id == user.id
+    }
+}
 //MARK: - DocumentReference extension
 
 private extension DocumentReference {

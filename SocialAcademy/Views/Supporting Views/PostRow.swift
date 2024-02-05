@@ -34,11 +34,15 @@ struct PostRow: View {
                 HStack {
                     FavoriteButton(isFavorite: vm.isFavorite, action: { vm.favoritePost() })
                     Spacer()
-                    Button(role: .destructive, action: {
-                        showConfirmationDialog.toggle()
-                    }) {
-                        Label("Delete", systemImage: "trash")
+                    
+                    if vm.canDeletePost {
+                        Button(role: .destructive, action: {
+                            showConfirmationDialog.toggle()
+                        }) {
+                            Label("Delete", systemImage: "trash")
+                        }
                     }
+
                 }
                 .labelStyle(.iconOnly)
                 .buttonStyle(.borderless)
