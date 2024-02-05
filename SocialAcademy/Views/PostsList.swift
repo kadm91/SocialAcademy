@@ -52,15 +52,16 @@ private extension PostsList {
                 emptyView
             case let .loaded(posts):
                 
-                List(posts) { post in
-                    if searchText.isEmpty || post.contains(searchText) {
-                        PostRow(vm: vm.makePostRowViewModel(for: post))
+                ScrollView {
+                    ForEach(posts) { post in
+                        if searchText.isEmpty || post.contains(searchText) {
+                            PostRow(vm: vm.makePostRowViewModel(for: post))
+                        }
+                        Divider()
                     }
+                    .searchable(text: $searchText)
+                    .animation(.default, value: posts)
                 }
-                .searchable(text: $searchText)
-                .animation(.default, value: posts)
-               
-                
             }
         }
         
