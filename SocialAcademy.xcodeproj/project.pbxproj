@@ -54,6 +54,8 @@
 		00C300832B6D543E00D8E404 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300822B6D543E00D8E404 /* ProfileView.swift */; };
 		00C300852B6D6A6B00D8E404 /* FormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300842B6D6A6B00D8E404 /* FormViewModel.swift */; };
 		00C300872B701E9E00D8E404 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300862B701E9E00D8E404 /* PrimaryButtonStyle.swift */; };
+		00C300892B702B2D00D8E404 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300882B702B2D00D8E404 /* User.swift */; };
+		00C3008B2B714A1E00D8E404 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3008A2B714A1E00D8E404 /* ViewModelFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +80,8 @@
 		00C300822B6D543E00D8E404 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		00C300842B6D6A6B00D8E404 /* FormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormViewModel.swift; sourceTree = "<group>"; };
 		00C300862B701E9E00D8E404 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		00C300882B702B2D00D8E404 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		00C3008A2B714A1E00D8E404 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				00B184FB2B5EE7F5004499D3 /* Post.swift */,
+				00C300882B702B2D00D8E404 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 		00B185032B61A3B4004499D3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				00C3008A2B714A1E00D8E404 /* ViewModelFactory.swift */,
 				00B185052B61A3DD004499D3 /* PostsViewModel.swift */,
 				007870BA2B6AB4290020077D /* PostRowViewModel.swift */,
 				00C3007E2B6D517400D8E404 /* AuthViewModel.swift */,
@@ -350,9 +356,11 @@
 				00B185002B604349004499D3 /* PostRow.swift in Sources */,
 				00B1850C2B6369E0004499D3 /* Loadable.swift in Sources */,
 				00B184FE2B5EE8AD004499D3 /* PostsList.swift in Sources */,
+				00C300892B702B2D00D8E404 /* User.swift in Sources */,
 				00C3007F2B6D517400D8E404 /* AuthViewModel.swift in Sources */,
 				00C300852B6D6A6B00D8E404 /* FormViewModel.swift in Sources */,
 				00B185022B604C63004499D3 /* NewPostForm.swift in Sources */,
+				00C3008B2B714A1E00D8E404 /* ViewModelFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

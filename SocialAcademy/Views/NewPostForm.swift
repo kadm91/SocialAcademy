@@ -9,13 +9,17 @@ import SwiftUI
 
 struct NewPostForm: View {
     
+    @StateObject var vm: FormViewModel<Post>
+    
     @Environment (\.dismiss) private var dismiss
     
     typealias CreateAction = (Post) async throws-> Void
-    let createAction: CreateAction
     
-    @State private var state = FormState.idle
-    @State private var post = Post()
+    
+//    let createAction: CreateAction
+//    
+//    @State private var state = FormState.idle
+//    @State private var post = Post()
     
     
     var body: some View {
@@ -35,18 +39,20 @@ struct NewPostForm: View {
                
                 
             }
+            .onChange(of: vm.isWorking) { isWorking, _ in
+                guard !isWorking, vm.error == nil else { return }
+                dismiss()
+            }
             .toolbar {
                 ToolbarItem (placement: .topBarLeading){
                     Button("Dismiss", role: .cancel) {dismiss()}
                 }
             }
             .navigationTitle(viewTitle)
-            .onSubmit (createPost)
+            .onSubmit (vm.submit)
         }
-        .disabled(state == .working)
-        .alert("Cannot Create Post", isPresented: $state.isError, actions: {}) {
-            Text("Sorry, something went wrong.")
-        }
+        .disabled(vm.isWorking)
+        .alert("Cannot Create Post", error: $vm.error)
     }
 }
 
@@ -62,20 +68,20 @@ private extension NewPostForm {
     
     var postInfoSection: some View {
         Group {
-            TextField("Title", text: $post.title)
-            TextField("Author Name", text: $post.authorName)
+            TextField("Title", text: $vm.title)
+            
         }
     }
     
     var postContetnSection: some View {
-        TextEditor (text: $post.content)
+        TextEditor (text: $vm.content)
                 .multilineTextAlignment(.leading)
     }
     
     var summitBtn: some View {
     
-        Button (action: createPost) {
-            if state == .working {
+        Button (action: vm.submit) {
+            if vm.isWorking {
                 ProgressView()
             } else {
                 Text("Create Post")
@@ -87,44 +93,10 @@ private extension NewPostForm {
         .listRowBackground(Color.accentColor)
         
     }
-    
-    
-    
-    //MARK: - Functions
-    
-    private func createPost() {
-        
-        Task {
-            state = .working
-            do {
-                try await createAction(post)
-                dismiss()
-            } catch {
-                print("[NewPostForm] Cannot create post: \(error)")
-                state = .error
-            }
-        }
-    }
-    
-    //MARK: - State
-    
-    enum FormState {
-        case idle, working, error
-        
-        var isError: Bool {
-            get {
-                self == .error
-            }
-            set {
-                guard !newValue else { return }
-                self = .idle
-            }
-        }
-    }
 }
 
 //MARK: - Preview
 
 #Preview {
-    NewPostForm(createAction: { _ in } )
+    NewPostForm(vm: FormViewModel(initialValue: Post.testPost, action: { _ in }))
 }

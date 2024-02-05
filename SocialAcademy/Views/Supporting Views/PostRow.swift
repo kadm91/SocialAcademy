@@ -18,7 +18,7 @@ struct PostRow: View {
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
-                    Text(vm.authorName)
+                    Text(vm.author.name)
                         .font(.subheadline)
                         .fontWeight(.medium)
                     Spacer()

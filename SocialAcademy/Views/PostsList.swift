@@ -10,7 +10,7 @@ import SwiftUI
 struct PostsList: View {
     
     
-    @StateObject var vm = PostsViewModel()
+    @StateObject var vm: PostsViewModel
     
     @State private var searchText = ""
     @State private var showNewPostForm = false
@@ -25,7 +25,7 @@ struct PostsList: View {
                     newPostBtn
                 }
                 .sheet(isPresented: $showNewPostForm) {
-                    NewPostForm(createAction: vm.makeCreateAction())
+                    NewPostForm(vm: vm.makeNewPostViewModel())
                 }
             
                 .navigationTitle(vm.title)
@@ -109,7 +109,7 @@ private extension PostsList {
 //MARK: - Preview
 
 #Preview {
-    PostsList()
+    PostsList(vm: PostsViewModel(postsRepository: PostsRepository(user: User.testUser)))
         
 }
 
