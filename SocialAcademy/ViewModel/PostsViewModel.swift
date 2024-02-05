@@ -13,7 +13,7 @@ final class PostsViewModel: ObservableObject  {
     
     
     enum Filter {
-        case all, favorites
+        case all, author(User),favorites
     }
     //MARK: - Properties
     
@@ -27,6 +27,9 @@ final class PostsViewModel: ObservableObject  {
             return "Posts"
         case .favorites:
             return "Favorites"
+        case let .author(author):
+            return "\(author.name)'s Posts"
+            
         }
     }
 
@@ -93,6 +96,8 @@ private extension PostsRepositoryProtocol {
             return try await fetchAllPosts()
         case .favorites:
             return try await fetchFavoritePosts()
+        case let .author(author):
+            return try await fetchPosts(by: author)
         }
     }
     

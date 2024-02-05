@@ -18,15 +18,25 @@ protocol PostsRepositoryProtocol {
     func delete (_ post: Post) async throws
     func favorite (_ post: Post) async throws
     func unfavorite(_ post: Post) async throws
+    func fetchPosts(by author: User)async throws -> [Post]
     var user: User {get}
 }
 
 
 struct PostsRepository: PostsRepositoryProtocol {
+   
+    
     
     let user: User
     
     var postsReference = Firestore.firestore().collection("posts_v2")
+    
+    // Fetch Posts by User
+    
+    func fetchPosts(by author: User) async throws -> [Post] {
+        return try await fetchPosts(from: postsReference.whereField("author.id", isEqualTo: author.id))
+    }
+    
     
     //createe
     
@@ -117,6 +127,10 @@ struct PostsRepositoryStub: PostsRepositoryProtocol {
     
     
     var user = User.testUser
+    
+    func fetchPosts(by author: User) async throws -> [Post] {
+        return [Post] ()
+    }
     
     func fetchFavoritePosts() async throws -> [Post] {
         return [Post]()
