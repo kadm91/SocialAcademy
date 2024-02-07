@@ -13,14 +13,7 @@ struct NewPostForm: View {
     
     @Environment (\.dismiss) private var dismiss
     
-    typealias CreateAction = (Post) async throws-> Void
-    
-    
-//    let createAction: CreateAction
-//    
-//    @State private var state = FormState.idle
-//    @State private var post = Post()
-    
+
     
     var body: some View {
         NavigationStack {

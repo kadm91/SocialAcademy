@@ -10,29 +10,63 @@ import SwiftUI
 struct CommentsList: View {
     @StateObject var vm: CommentsViewModel
     
+    @State private var testingText = ""
+    
     var body: some View {
-        Group {
-            switch vm.comments {
-            case .loading:
-                ProgressView()
-                    .onAppear {
-                        vm.fetchComments()
+        NavigationStack {
+            Group {
+                switch vm.comments {
+                case .loading:
+                    ProgressView()
+                        .onAppear {
+                            vm.fetchComments()
+                        }
+                case let .error(error):
+                    errorView(message: error.localizedDescription)
+                    
+                case .empty:
+                    VStack(spacing: 0){
+                        emptyView
+                        
+                        
+                        NewCommentForm(vm: vm.makeNewCommentViewModel())
+                            .padding(.vertical)
+                            .background(.thickMaterial)
+                            
+                            
                     }
-            case let .error(error):
-                errorView(message: error.localizedDescription)
-                
-            case .empty:
-               emptyView
-                
-            case let .loaded(comments):
-                List(comments) { comment in
-                    CommentRow(comment: comment)
+                   
+                        
+                    
+                case let .loaded(comments):
+                    
+                    VStack (spacing: 0) {
+                        List(comments) { comment in
+                            CommentRow(comment: comment)
+                        }
+                        
+                        .animation(.default, value: comments)
+                        
+                    
+                        
+                        NewCommentForm(vm: vm.makeNewCommentViewModel())
+                            .padding(.vertical)
+                            .background(.thickMaterial)
+                            
+                            
+                    }
+                    
+                   
+                  
+                        
+                           
+                        
+                    
                 }
-                .animation(.default, value: comments)
             }
+            .navigationTitle("Comments")
+            .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Comments")
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 
@@ -69,6 +103,42 @@ private extension CommentsList {
             description: Text( "There aren't any Comments."))
     }
 }
+
+//MARK: - extensions
+
+extension CommentsList {
+    
+    struct NewCommentForm: View {
+        @StateObject var vm: FormViewModel<Comment>
+        
+        var body: some View {
+            HStack {
+                TextField("Comment", text: $vm.content)
+                    .textFieldStyle(.roundedBorder)
+                Spacer()
+                Button(action: vm.submit) {
+                    if vm.isWorking {
+                        ProgressView()
+                    } else {
+                        Label("Post", systemImage: "paperplane")
+                            .font(.title3)
+                    }
+                }
+                .labelStyle(.iconOnly)
+                .padding(.trailing)
+            }
+            .alert("Cannot Post Comment", error: $vm.error)
+            .animation(.default, value: vm.isWorking)
+            .disabled(vm.isWorking)
+            .onSubmit(vm.submit)
+            .padding(.horizontal)
+            
+        }
+    }
+}
+
+
+//MARK: - Previews
 
 #Preview {
     NavigationStack {

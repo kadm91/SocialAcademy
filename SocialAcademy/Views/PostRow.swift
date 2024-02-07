@@ -16,6 +16,7 @@ struct PostRow: View {
     @ObservedObject var vm: PostRowViewModel
     
     @State private var showConfirmationDialog = false
+    @State private var showComments = false
     
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
@@ -35,15 +36,27 @@ struct PostRow: View {
                     
                     FavoriteButton(isFavorite: vm.isFavorite, action: { vm.favoritePost() })
                     
-                    NavigationLink {
-                        CommentsList(vm: factory.makeCommentsViewModel(for: vm.post))
+                    
+                    
+                    Button {
+                        showComments.toggle()
                     } label: {
                         Label("Comments", systemImage: "text.bubble")
                             .font(.title3)
-                            
                     }
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.secondary)
                     .padding(.horizontal, 10)
+                    
+                    
+//                    NavigationLink {
+//                        CommentsList(vm: factory.makeCommentsViewModel(for: vm.post))
+//                    } label: {
+//                        Label("Comments", systemImage: "text.bubble")
+//                            .font(.title3)
+//                            
+//                    }
+//                    .foregroundStyle(.secondary)
+//                    .padding(.horizontal, 10)
 
                     
                     
@@ -62,6 +75,9 @@ struct PostRow: View {
                 }
                 .labelStyle(.iconOnly)
                 .padding(.top, 5)
+                .sheet(isPresented: $showComments) {
+                    CommentsList(vm: factory.makeCommentsViewModel(for: vm.post))
+                }
                
                 
                 
