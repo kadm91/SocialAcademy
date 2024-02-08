@@ -195,8 +195,8 @@
 				00B184FD2B5EE8AD004499D3 /* PostsList.swift */,
 				00B185012B604C63004499D3 /* NewPostForm.swift */,
 				00B184FF2B604349004499D3 /* PostRow.swift */,
-				007870B72B6A182B0020077D /* Supporting Views */,
 				00C300962B72CA1600D8E404 /* CommentRow.swift */,
+				007870B72B6A182B0020077D /* Supporting Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";

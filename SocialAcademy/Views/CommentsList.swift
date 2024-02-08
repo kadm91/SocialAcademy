@@ -43,7 +43,7 @@ struct CommentsList: View {
                     
                     VStack (spacing: 0) {
                         List(comments) { comment in
-                            CommentRow(comment: comment)
+//                            CommentRow(vm: CommentRowViewModel(comment: comment, deleteAction: ()))
                         }
                         
                         .animation(.default, value: comments)
