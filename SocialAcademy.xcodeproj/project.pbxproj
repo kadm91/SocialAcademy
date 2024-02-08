@@ -63,6 +63,7 @@
 		00C300952B72C52F00D8E404 /* CommentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300942B72C52F00D8E404 /* CommentsList.swift */; };
 		00C300972B72CA1600D8E404 /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300962B72CA1600D8E404 /* CommentRow.swift */; };
 		00C300992B747D5300D8E404 /* CommentRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300982B747D5300D8E404 /* CommentRowViewModel.swift */; };
+		00C3009B2B74803300D8E404 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C3009A2B74803300D8E404 /* ErrorHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		00C300942B72C52F00D8E404 /* CommentsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsList.swift; sourceTree = "<group>"; };
 		00C300962B72CA1600D8E404 /* CommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRow.swift; sourceTree = "<group>"; };
 		00C300982B747D5300D8E404 /* CommentRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModel.swift; sourceTree = "<group>"; };
+		00C3009A2B74803300D8E404 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 				00B1850B2B6369E0004499D3 /* Loadable.swift */,
 				00C300902B72C0B500D8E404 /* Firestore+Extensions.swift */,
 				00C300862B701E9E00D8E404 /* PrimaryButtonStyle.swift */,
+				00C3009A2B74803300D8E404 /* ErrorHandler.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */,
 				00B184FC2B5EE7F5004499D3 /* Post.swift in Sources */,
 				00C300912B72C0B500D8E404 /* Firestore+Extensions.swift in Sources */,
+				00C3009B2B74803300D8E404 /* ErrorHandler.swift in Sources */,
 				00C3007D2B6D4C2E00D8E404 /* AuthService.swift in Sources */,
 				00C300952B72C52F00D8E404 /* CommentsList.swift in Sources */,
 				00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */,
