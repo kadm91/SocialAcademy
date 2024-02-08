@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CommentsList: View {
+    
     @StateObject var vm: CommentsViewModel
     
     @State private var testingText = ""
@@ -29,7 +30,7 @@ struct CommentsList: View {
                         emptyView
                         
                         
-                        NewCommentForm(vm: vm.makeNewCommentViewModel())
+                        NewCommentForm(formVm: vm.makeNewCommentViewModel())
                             .padding(.vertical)
                             .background(.thickMaterial)
                             
@@ -48,19 +49,12 @@ struct CommentsList: View {
                         .animation(.default, value: comments)
                         
                     
-                        
-                        NewCommentForm(vm: vm.makeNewCommentViewModel())
+                        NewCommentForm(formVm: vm.makeNewCommentViewModel())
                             .padding(.vertical)
                             .background(.thickMaterial)
                             
                             
                     }
-                    
-                   
-                  
-                        
-                           
-                        
                     
                 }
             }
@@ -109,15 +103,20 @@ private extension CommentsList {
 extension CommentsList {
     
     struct NewCommentForm: View {
-        @StateObject var vm: FormViewModel<Comment>
+        
+        @StateObject var formVm: FormViewModel<Comment>
+        
         
         var body: some View {
             HStack {
-                TextField("Comment", text: $vm.content)
+                TextField("Comment", text: $formVm.content)
                     .textFieldStyle(.roundedBorder)
                 Spacer()
-                Button(action: vm.submit) {
-                    if vm.isWorking {
+                Button { 
+                    formVm.submit()
+                
+                } label: {
+                    if formVm.isWorking {
                         ProgressView()
                     } else {
                         Label("Post", systemImage: "paperplane")
@@ -127,10 +126,10 @@ extension CommentsList {
                 .labelStyle(.iconOnly)
                 .padding(.trailing)
             }
-            .alert("Cannot Post Comment", error: $vm.error)
-            .animation(.default, value: vm.isWorking)
-            .disabled(vm.isWorking)
-            .onSubmit(vm.submit)
+            .alert("Cannot Post Comment", error: $formVm.error)
+            .animation(.default, value: formVm.isWorking)
+            .disabled(formVm.isWorking)
+            .onSubmit(formVm.submit)
             .padding(.horizontal)
             
         }

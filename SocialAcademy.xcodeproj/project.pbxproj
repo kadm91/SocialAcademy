@@ -62,6 +62,7 @@
 		00C300932B72C2FD00D8E404 /* CommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300922B72C2FD00D8E404 /* CommentsViewModel.swift */; };
 		00C300952B72C52F00D8E404 /* CommentsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300942B72C52F00D8E404 /* CommentsList.swift */; };
 		00C300972B72CA1600D8E404 /* CommentRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300962B72CA1600D8E404 /* CommentRow.swift */; };
+		00C300992B747D5300D8E404 /* CommentRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C300982B747D5300D8E404 /* CommentRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		00C300922B72C2FD00D8E404 /* CommentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewModel.swift; sourceTree = "<group>"; };
 		00C300942B72C52F00D8E404 /* CommentsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsList.swift; sourceTree = "<group>"; };
 		00C300962B72CA1600D8E404 /* CommentRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRow.swift; sourceTree = "<group>"; };
+		00C300982B747D5300D8E404 /* CommentRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +228,7 @@
 				00C3007E2B6D517400D8E404 /* AuthViewModel.swift */,
 				00C300842B6D6A6B00D8E404 /* FormViewModel.swift */,
 				00C300922B72C2FD00D8E404 /* CommentsViewModel.swift */,
+				00C300982B747D5300D8E404 /* CommentRowViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 				00B185092B621BD5004499D3 /* PostsRepository.swift in Sources */,
 				00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */,
 				00C300832B6D543E00D8E404 /* ProfileView.swift in Sources */,
+				00C300992B747D5300D8E404 /* CommentRowViewModel.swift in Sources */,
 				00C300972B72CA1600D8E404 /* CommentRow.swift in Sources */,
 				00C3007A2B6BFD1900D8E404 /* MainTabView.swift in Sources */,
 				007870B92B6A18AC0020077D /* Alert+Error.swift in Sources */,
