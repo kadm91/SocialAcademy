@@ -28,19 +28,16 @@ struct CommentRow: View {
                 .fontWeight(.regular)
         }
         .padding(5)
+        .alert("Cannot Delete Comment", error: $vm.error)
+ // add a confirmation acction dont allow for the button to delete the comment in firestore if comment is deleted direclty from the swipe action it work fine
         .swipeActions {
             if vm.canDeleteComment {
                 Button(role: .destructive) {
-                    showConfirmationDialog.toggle()
+                 vm.deleteComment()
                 } label: {
                     Label("Delete", systemImage: "trash")
                 }
             }
-        }
-        .confirmationDialog("Are you sure you want to delete this comment?", isPresented: $showConfirmationDialog, titleVisibility: .visible) {
-            Button("Delete", role: .destructive, action: {
-                vm.deleteComment()
-            })
         }
     }
         

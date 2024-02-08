@@ -10,18 +10,18 @@ import Foundation
 @MainActor
 @dynamicMemberLookup
 class CommentRowViewModel: ObservableObject, ErrorHandler {
-    
     typealias Action = () async throws -> Void
-    
-    private let deleteAction: Action?
-    var canDeleteComment: Bool { deleteAction != nil}
     
     @Published var comment: Comment
     @Published var error: Error?
     
+    var canDeleteComment: Bool { deleteAction != nil }
+    
     subscript<T>(dynamicMember keyPath: KeyPath<Comment, T>) -> T {
         comment[keyPath: keyPath]
     }
+    
+    private let deleteAction: Action?
     
     init(comment: Comment, deleteAction: Action?) {
         self.comment = comment
@@ -30,11 +30,8 @@ class CommentRowViewModel: ObservableObject, ErrorHandler {
     
     func deleteComment() {
         guard let deleteAction = deleteAction else {
-            preconditionFailure("Cannont delete comment: no delete action provided")
+            preconditionFailure("Cannot delete comment: no delete action provided")
         }
-        
         withErrorHandlingTask(perform: deleteAction)
     }
-    
-
 }

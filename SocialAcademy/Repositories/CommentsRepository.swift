@@ -56,7 +56,7 @@ struct CommentsRepository: CommentsRepositoryProtocol {
 
 extension CommentsRepositoryProtocol {
     func canDelete(_ comment: Comment) -> Bool {
-        [comment.author.id, post.author.id].contains(user.id)
+        comment.author.id == user.id ? true : false
     }
 }
 

@@ -9,9 +9,8 @@ import SwiftUI
 
 struct CommentsList: View {
     
+    @Environment (\.dismiss) private var dismiss
     @StateObject var vm: CommentsViewModel
-    
-    @State private var testingText = ""
     
     var body: some View {
         NavigationStack {
@@ -43,7 +42,7 @@ struct CommentsList: View {
                     
                     VStack (spacing: 0) {
                         List(comments) { comment in
-//                            CommentRow(vm: CommentRowViewModel(comment: comment, deleteAction: ()))
+                            CommentRow(vm: vm.makeCommentRowViewModel(for: comment))
                         }
                         
                         .animation(.default, value: comments)
@@ -60,6 +59,13 @@ struct CommentsList: View {
             }
             .navigationTitle("Comments")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Dismiss") {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }
@@ -104,17 +110,17 @@ extension CommentsList {
     
     struct NewCommentForm: View {
         
-        @StateObject var formVm: FormViewModel<Comment>
-        
+        @ObservedObject var formVm: FormViewModel<Comment>
+        @FocusState private var isCommentFocus: Bool
         
         var body: some View {
             HStack {
                 TextField("Comment", text: $formVm.content)
+                    .focused($isCommentFocus)
                     .textFieldStyle(.roundedBorder)
                 Spacer()
                 Button { 
                     formVm.submit()
-                
                 } label: {
                     if formVm.isWorking {
                         ProgressView()
@@ -125,6 +131,9 @@ extension CommentsList {
                 }
                 .labelStyle(.iconOnly)
                 .padding(.trailing)
+            }
+            .onAppear {
+                isCommentFocus.toggle()
             }
             .alert("Cannot Post Comment", error: $formVm.error)
             .animation(.default, value: formVm.isWorking)
