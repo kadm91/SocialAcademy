@@ -24,20 +24,6 @@ struct Post: Identifiable, Equatable {
         return !matches.isEmpty
     }
     
-    init(title: String, content: String, author: User, timestamp: Date = Date()) {
-     
-        self.title = title
-        self.content = content
-        self.author = author
-        self.timestamp = timestamp
-    }
-    
-    init() {
-        self.init( title: "",
-                   content: "",
-                   author: User(id: "", name: ""))
-    }
-    
     
 }
 

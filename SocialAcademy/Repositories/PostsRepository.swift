@@ -29,7 +29,7 @@ struct PostsRepository: PostsRepositoryProtocol {
     
     let user: User
     
-    var postsReference = Firestore.firestore().collection("posts_v2")
+    var postsReference = Firestore.firestore().collection("posts_v3")
     
     let favoritesReference = Firestore.firestore().collection("favorites")
     

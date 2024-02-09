@@ -7,17 +7,19 @@
 
 import SwiftUI
 
+// MARK: - ImagePickerButton
+
 struct ImagePickerButton<Label: View>: View {
-    
     @Binding var imageURL: URL?
     @ViewBuilder let label: () -> Label
+    
     @State private var showImageSourceDialog = false
     @State private var sourceType: UIImagePickerController.SourceType?
     
     var body: some View {
-        Button {
-            showImageSourceDialog.toggle()
-        } label: {
+        Button(action: {
+            showImageSourceDialog = true
+        }) {
             label()
         }
         .confirmationDialog("Choose Image", isPresented: $showImageSourceDialog) {
@@ -42,11 +44,11 @@ struct ImagePickerButton<Label: View>: View {
     }
 }
 
-//MARK: - extension
-
 extension UIImagePickerController.SourceType: Identifiable {
-    public var id: String {"\(self)"}
+    public var id: String { "\(self)" }
 }
+
+// MARK: - ImagePickerView
 
 private extension ImagePickerButton {
     struct ImagePickerView: UIViewControllerRepresentable {
@@ -68,29 +70,36 @@ private extension ImagePickerButton {
         }
         
         func updateUIViewController(_ imagePicker: UIImagePickerController, context: Context) {}
-        
-        
-        // ImagePickerCoordinator
-        
-        class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-            let view: ImagePickerView
-            
-            init(view: ImagePickerView) {
-                self.view = view
-            }
-            
-            func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-                guard let imageURL = info[.imageURL] as? URL else { return }
-                view.onSelect(imageURL)
-                view.dismiss()
-            }
-        }
-        
     }
 }
 
-//MARK: - Preview
+// MARK: - ImagePickerCoordinator
 
-//#Preview {
-//    ImagePickerButton()
-//}
+private extension ImagePickerButton {
+    class ImagePickerCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+        let view: ImagePickerView
+        
+        init(view: ImagePickerView) {
+            self.view = view
+        }
+        
+        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            guard let imageURL = info[.imageURL] as? URL else { return }
+            view.onSelect(imageURL)
+            view.dismiss()
+        }
+    }
+}
+
+// MARK: - Preview
+
+#Preview {
+    ImagePickerButton(imageURL: .constant(nil)) {
+        Label("Choose Image", systemImage: "photo.fill")
+    }
+}
+
+
+
+
+

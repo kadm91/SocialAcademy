@@ -7,13 +7,14 @@
 
 import Foundation
 import FirebaseStorage
+import FirebaseFirestoreSwift
 
 struct StorageFile {
     private let storageReference: StorageReference
     
     func putFile(from fileURL: URL) async throws -> Self {
         _ = try await storageReference.putFileAsync(from: fileURL)
-        return self // from method chaining
+        return self // for method chaining
     }
     
     func getDownloadURL() async throws -> URL {
@@ -28,14 +29,14 @@ struct StorageFile {
 extension StorageFile {
     private static let storage = Storage.storage()
     
-    static func with (namespace: String, identifier: String) -> StorageFile {
-        let path = "\(namespace)\(identifier)"
+    static func with(namespace: String, identifier: String) -> StorageFile {
+        let path = "\(namespace)/\(identifier)"
         let storageReference = storage.reference().child(path)
         return StorageFile(storageReference: storageReference)
     }
     
     static func atURL(_ downloadURL: URL) -> StorageFile {
-        let storageReference = storage.reference(forURL: downloadURL.absoluteString)
+        let storageReference = storage.reference(forURL: downloadURL.relativeString)
         return StorageFile(storageReference: storageReference)
     }
 }
