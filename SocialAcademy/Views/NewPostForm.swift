@@ -22,6 +22,8 @@ struct NewPostForm: View {
                     postInfoSection
                 }
                 
+                ImageSection(imageURL: $vm.imageURL)
+                
                 Section ("Content") {
                     postContetnSection
                 }
@@ -84,7 +86,28 @@ private extension NewPostForm {
         .foregroundStyle(.white)
         .frame(maxWidth: .infinity)
         .listRowBackground(Color.accentColor)
+    }
+    
+    // ImageSection View
+    
+    struct ImageSection: View {
+        @Binding var imageURL: URL?
         
+        var body: some View {
+            Section("Image") {
+                AsyncImage(url: imageURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                } placeholder: {
+                    EmptyView()
+                }
+                ImagePickerButton(imageURL: $imageURL) {
+                    Label("Choose Image", systemImage: "photo.fill")
+                }
+            }
+        }
     }
 }
 
