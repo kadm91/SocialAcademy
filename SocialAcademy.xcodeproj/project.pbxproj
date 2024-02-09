@@ -11,6 +11,7 @@
 		007870B92B6A18AC0020077D /* Alert+Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007870B82B6A18AC0020077D /* Alert+Error.swift */; };
 		007870BB2B6AB4290020077D /* PostRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007870BA2B6AB4290020077D /* PostRowViewModel.swift */; };
 		007D77E72B768C340079B418 /* StorageFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D77E62B768C340079B418 /* StorageFile.swift */; };
+		007D77E92B768EE80079B418 /* ImagePickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007D77E82B768EE80079B418 /* ImagePickerButton.swift */; };
 		00B184B22B5EDE76004499D3 /* SocialAcademyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B184B12B5EDE76004499D3 /* SocialAcademyApp.swift */; };
 		00B184B62B5EDE77004499D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00B184B52B5EDE77004499D3 /* Assets.xcassets */; };
 		00B184B92B5EDE77004499D3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00B184B82B5EDE77004499D3 /* Preview Assets.xcassets */; };
@@ -72,6 +73,7 @@
 		007870B82B6A18AC0020077D /* Alert+Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Error.swift"; sourceTree = "<group>"; };
 		007870BA2B6AB4290020077D /* PostRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowViewModel.swift; sourceTree = "<group>"; };
 		007D77E62B768C340079B418 /* StorageFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageFile.swift; sourceTree = "<group>"; };
+		007D77E82B768EE80079B418 /* ImagePickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerButton.swift; sourceTree = "<group>"; };
 		00B184AE2B5EDE76004499D3 /* SocialAcademy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SocialAcademy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		00B184B12B5EDE76004499D3 /* SocialAcademyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialAcademyApp.swift; sourceTree = "<group>"; };
 		00B184B52B5EDE77004499D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				007870B82B6A18AC0020077D /* Alert+Error.swift */,
+				007D77E82B768EE80079B418 /* ImagePickerButton.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				007D77E92B768EE80079B418 /* ImagePickerButton.swift in Sources */,
 				00C300872B701E9E00D8E404 /* PrimaryButtonStyle.swift in Sources */,
 				00C300812B6D530E00D8E404 /* AuthView.swift in Sources */,
 				00B185062B61A3DD004499D3 /* PostsViewModel.swift in Sources */,
