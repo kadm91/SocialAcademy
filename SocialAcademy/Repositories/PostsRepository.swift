@@ -29,7 +29,7 @@ struct PostsRepository: PostsRepositoryProtocol {
     
     let user: User
     
-    var postsReference = Firestore.firestore().collection("posts_v3")
+    var postsReference = Firestore.firestore().collection("posts_v2")
     
     let favoritesReference = Firestore.firestore().collection("favorites")
     
@@ -50,6 +50,7 @@ struct PostsRepository: PostsRepositoryProtocol {
                 .putFile(from: imageFileURL)
                 .getDownloadURL()
         }
+        
         let document = postsReference.document(post.id.uuidString)
         try await document.setData(from: post)
     }

@@ -17,6 +17,11 @@ struct StorageFile {
         return self // for method chaining
     }
     
+    func putData(from data: Data) async throws -> Self {
+        _ = try await storageReference.putDataAsync(data)
+        return self // for method chaining
+    }
+    
     func getDownloadURL() async throws -> URL {
         return try await storageReference.downloadURL()
     }
