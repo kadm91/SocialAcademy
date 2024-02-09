@@ -37,6 +37,7 @@ extension Post {
     static let testPost = Post(
         title: "Lorem ipsum",
         content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: User.testUser
+        author: User.testUser,
+        imageURL: URL(string: "https://source.unsplash.com/lw9LrnpUmWw/480x480")
     )
 }
