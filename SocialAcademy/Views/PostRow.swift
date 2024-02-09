@@ -27,6 +27,11 @@ struct PostRow: View {
                         .font(.caption)
                 }
                 .foregroundColor(.gray)
+                
+                if let imageURL = vm.imageURL {
+                    PostImage(url: imageURL)
+                }
+                
                 Text(vm.title)
                     .font(.title3)
                     .fontWeight(.semibold)
@@ -46,21 +51,6 @@ struct PostRow: View {
                     }
                     .foregroundStyle(Color.secondary)
                     .padding(.horizontal, 10)
-                    
-                    
-//                    NavigationLink {
-//                        CommentsList(vm: factory.makeCommentsViewModel(for: vm.post))
-//                    } label: {
-//                        Label("Comments", systemImage: "text.bubble")
-//                            .font(.title3)
-//                            
-//                    }
-//                    .foregroundStyle(.secondary)
-//                    .padding(.horizontal, 10)
-
-                    
-                    
-                    
                     
                     Spacer()
                     
@@ -91,6 +81,9 @@ struct PostRow: View {
     
   
 }
+
+//MARK: - private extensions
+
 
 private extension PostRow {
     struct AuthorView: View {
@@ -132,6 +125,26 @@ private extension PostRow {
         }
     }
 }
+
+
+private extension PostRow {
+    struct PostImage: View {
+        let url: URL
+        
+        var body: some View {
+            AsyncImage(url: url) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            } placeholder: {
+                Color.clear
+            }
+        }
+    }
+}
+
+//MARK: - Preview
 
 #Preview {
     PostRow(vm: PostRowViewModel(post: Post.testPost, deleteAction: {}, favoriteAction: {}))
