@@ -21,6 +21,7 @@ struct PostRow: View {
     var body: some View {
             VStack(alignment: .leading, spacing: 10) {
                 HStack {
+                    
                     AuthorView(author: vm.author)
                     Spacer()
                     Text(vm.timestamp.formatted(date: .abbreviated, time: .omitted))
@@ -96,9 +97,14 @@ private extension PostRow {
             NavigationLink {
                 PostsList(vm: factory.makePostViewModel(filter: .author(author)))
             } label: {
-                Text(author.name)
-                    .font(.subheadline)
-                    .fontWeight(.medium)
+                HStack {
+                    ProfileImage(url: author.imageURL)
+                        .frame(width: 40, height: 40)
+                    Text(author.name)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                }
+                
             }
         }
     }
