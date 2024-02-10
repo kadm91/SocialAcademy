@@ -18,7 +18,7 @@ struct ProfileView: View {
         NavigationStack {
             VStack {
                 Spacer()
-                AsyncImage(url: vm.imageURL)
+                ProfileImage(url: vm.imageURL)
                     .frame(width: 200, height: 200)
                 Spacer()
                 Text(vm.name)
@@ -28,6 +28,7 @@ struct ProfileView: View {
                 ImagePickerButton(imageURL: $vm.imageURL) {
                     Label("Choose Image", systemImage: "photo.fill")
                 }
+                Spacer()
                     
             }
             .alert("Error", error: $vm.error)

@@ -16,13 +16,13 @@ struct ProfileImage: View {
             AsyncImage(url: url) { image in
                     image
                     .resizable()
-                    .scaledToFit()
+                    .scaledToFill()
             } placeholder: {
                 Image(systemName: "person")
             }
             .frame(width: proxy.size.width, height: proxy.size.height)
             .clipShape(Circle())
-            .overlay(Circle().stroke(Color.gray.opacity(0.25)))
+            .overlay(Circle().strokeBorder(Color.gray.opacity(0.30)))
             
         }
     }
