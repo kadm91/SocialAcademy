@@ -9,11 +9,39 @@ import SwiftUI
 import FirebaseAuth
 
 struct ProfileView: View {
+    
+    @StateObject var vm: ProfileViewModel
+    
+    
+    
     var body: some View {
-        Button("Sign Out", action: {try! Auth.auth().signOut()})
+        NavigationStack {
+            VStack {
+                Spacer()
+                AsyncImage(url: vm.imageURL)
+                    .frame(width: 200, height: 200)
+                Spacer()
+                Text(vm.name)
+                    .font(.title2)
+                    .bold()
+                    .padding()
+                ImagePickerButton(imageURL: $vm.imageURL) {
+                    Label("Choose Image", systemImage: "photo.fill")
+                }
+                    
+            }
+            .alert("Error", error: $vm.error)
+            .disabled(vm.isWorking)
+            .navigationTitle("Profile")
+            .toolbar {
+                Button("Sign Out", action: {
+                    vm.signOut()
+                })
+            }
+        }
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView(vm: ProfileViewModel(user: User.testUser, authService: AuthService()))
 }

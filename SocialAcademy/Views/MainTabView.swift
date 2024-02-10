@@ -24,7 +24,7 @@ struct MainTabView: View {
             .tabItem { Label("Favorites", systemImage: "heart") }
            
             
-            ProfileView()
+            ProfileView(vm: factory.makeProfileViewModel())
                 .tabItem { Label("Profile", systemImage: "person") }
         }
     }
